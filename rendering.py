@@ -12,22 +12,21 @@ GREEN = (0, 255, 0)
 BLACK = (0, 0, 0)
  
 # Game Setup
-FPS = 60
-fpsClock = pygame.time.Clock()
 WINDOW_WIDTH = 512
 WINDOW_HEIGHT = 512
 increment = WINDOW_WIDTH//512
 # str = input("equation: ")
  
 WINDOW = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
-pygame.display.set_caption('My Game!')
  
 # The main function that controls the game
 def main () :
   looping = True
-  
+
   # The main game loop
   while looping :
+    print("hi")
+  print("hello")
     # Get inputs
     for event in pygame.event.get() :
       if event.type == QUIT :
@@ -38,6 +37,7 @@ def main () :
     # 25px
  
     # Render elements of the game
+    print("hi")
     WINDOW.fill(BACKGROUND)
     pygame.draw.line(WINDOW, BLACK, (WINDOW_WIDTH/2, 0), (WINDOW_WIDTH/2, WINDOW_HEIGHT), 2)
     pygame.draw.line(WINDOW, BLACK, (0, WINDOW_HEIGHT/2), (WINDOW_WIDTH, WINDOW_HEIGHT/2), 2)
@@ -94,7 +94,6 @@ def main () :
                 pygame.draw.line(WINDOW, BLUE, (gx(x), gy(y)+increment/2), (gx(x)+increment/2, gy(y)), 2)
                 
     pygame.display.update()
-    fpsClock.tick(FPS)
     
 def gx(x):
     return WINDOW_WIDTH/2+x
