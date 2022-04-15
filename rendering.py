@@ -14,10 +14,10 @@ BLACK = (0, 0, 0)
 # Game Setup
 FPS = 60
 fpsClock = pygame.time.Clock()
-WINDOW_WIDTH = 400
-WINDOW_HEIGHT = 400
-increment = WINDOW_WIDTH//128
-str = input("equation: ")
+WINDOW_WIDTH = 512
+WINDOW_HEIGHT = 512
+increment = WINDOW_WIDTH//512
+# str = input("equation: ")
  
 WINDOW = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
 pygame.display.set_caption('My Game!')
@@ -45,8 +45,8 @@ def main () :
         for y in range(-1*WINDOW_HEIGHT//2, WINDOW_HEIGHT//2+1, increment):
             # print(str(x) + ", " + str(y))
             # pygame.draw.rect(WINDOW, RED, pygame.Rect(gx(x), gy(y), increment, increment), 1)
-            # if x**2 + y**2 - 100**2<= 0:
-            #     pygame.draw.circle(WINDOW, GREEN, (gx(x), gx(y)), 5)
+            # if is_contained(x, -y):
+            #     pygame.draw.circle(WINDOW, GREEN, (gx(x), gx(y)), 1)
             
             
             if is_contained(x, y) and not is_contained(x+increment, y) and not is_contained(x, y-increment) and not is_contained(x+increment, y-increment):
@@ -103,6 +103,6 @@ def gy(y):
     return WINDOW_HEIGHT/2-y
 
 def is_contained(x,y):
-    return x - y <= 0
+    return 10*math.sin(x) + 50*math.sin(x/60) + x/2 - y <= 0
  
 main()
