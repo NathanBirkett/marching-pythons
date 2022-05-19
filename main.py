@@ -11,19 +11,22 @@ GREEN = (0, 255, 0)
 BLACK = (0, 0, 0)
 WINDOW_WIDTH = 512
 WINDOW_HEIGHT = 512
-increment = WINDOW_WIDTH//512
+increment = WINDOW_WIDTH//32
 WINDOW = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
 points = [[False for i in range(WINDOW_WIDTH//increment+1)] for j in range(WINDOW_WIDTH//increment+1)]
+equation = ""
 
 def main():
-    # print(is_contained(int(input("x:")), int(input("y:"))))
-    draw()
-    looping = True
-    while looping :
-        for event in pygame.event.get() :
-            if event.type == QUIT :
-                pygame.quit()
-                sys.exit()
+    equation = input("equation: ")
+    if not equation == "":
+        print(equation)
+        draw()
+        looping = True
+        while looping :
+            for event in pygame.event.get() :
+                if event.type == QUIT :
+                    pygame.quit()
+                    sys.exit()
 
 def draw():
     WINDOW.fill(BACKGROUND)
@@ -31,9 +34,9 @@ def draw():
     pygame.draw.line(WINDOW, BLACK, (0, WINDOW_HEIGHT/2), (WINDOW_WIDTH, WINDOW_HEIGHT/2), 2)
     for x in range(-WINDOW_WIDTH//2, WINDOW_WIDTH//2+1, increment):
         for y in range(WINDOW_HEIGHT//2, -WINDOW_HEIGHT//2-1, -increment):
-            # pygame.draw.rect(WINDOW, RED, pygame.Rect(gx(x), gy(y), increment, increment), 1)
+            pygame.draw.rect(WINDOW, RED, pygame.Rect(gx(x), gy(y), increment, increment), 1)
             if is_contained(x, y):
-                # pygame.draw.circle(WINDOW, GREEN, (gx(x), gy(y)), 3)
+                pygame.draw.circle(WINDOW, GREEN, (gx(x), gy(y)), 3)
                 points[int(gx(x)/increment)][int(gy(y)/increment)] = True
                 
     for x in range(-WINDOW_WIDTH//2, WINDOW_WIDTH//2, increment):
@@ -81,7 +84,8 @@ def gy(y):
     return WINDOW_HEIGHT/2-y
 
 def is_contained(x,y):
-    return x**2 + (y - 8*math.sqrt(abs(x)))**2 - 100**2 <= 0
+    # return x**2 + y**2 - 200**2 <= 0
+    return eval(equation)
 
 def check_box(_x,_y):
     x = int(gx(_x)/increment)
